@@ -178,6 +178,14 @@
 {
 	[self.masterViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 	[self.detailViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+	
+	if (_hiddenPopoverController && _hiddenPopoverController.popoverVisible) {
+		[_hiddenPopoverController dismissPopoverAnimated:NO];
+	}
+	
+	// Re-tile views.
+	_reconfigurePopup = YES;
+	[self layoutSubviewsForInterfaceOrientation:toInterfaceOrientation withAnimation:YES];
 }
 
 
